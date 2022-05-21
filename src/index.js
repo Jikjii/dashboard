@@ -4,4 +4,12 @@ import './index.css'
 
 import App from './App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { ContextProvider } from './contexts/ContextProvider'
+
+
+ReactDOM.render(
+    <ContextProvider>
+        <App />
+    </ContextProvider>,
+    document.getElementById('root')
+);
