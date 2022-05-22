@@ -11,10 +11,10 @@ const Sidebar = () => {
   const { activeMenu, setActiveMenu, screenSize } = useStateContext();
 
   const handleCloseSideBar = () => {
-    if(activeMenu && screenSize <= 900) {
+    if (activeMenu && screenSize <= 900) {
       setActiveMenu(false);
     }
-  }
+  };
 
   const activeLink =
     "flex item-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md m-2";
@@ -56,7 +56,9 @@ const Sidebar = () => {
                   <NavLink
                     to={`/${Link.name}`}
                     key={link.name}
-                    onClick={() => {handleCloseSideBar}}
+                    onClick={() => {
+                      handleCloseSideBar;
+                    }}
                     className={({ isActive }) =>
                       isActive ? activeLink : normalLink
                     }

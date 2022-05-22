@@ -10,7 +10,7 @@ import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import avatar from "../data/avatar.jpg";
 import { Cart, Chat, Notification, UserProfile } from ".";
 import { useStateContext } from "../contexts/ContextProvider";
-import { userProfileData } from '../data/dummy';
+import { userProfileData } from "../data/dummy";
 
 const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
   <TooltipComponent content={title} position="BottomCenter">
@@ -24,35 +24,39 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
         style={{ background: dotColor }}
         className="absolute inline-flex rounded-full h-2 w-2 right-2 top-2"
       />
-        {icon}
+      {icon}
     </button>
   </TooltipComponent>
 );
 
 const Navbar = () => {
-  const { activeMenu, setActiveMenu, isClicked, setIsClicked, handleClick, screenSize, setScreenSize } =
-    useStateContext();
+  const {
+    activeMenu,
+    setActiveMenu,
+    isClicked,
+    setIsClicked,
+    handleClick,
+    screenSize,
+    setScreenSize,
+  } = useStateContext();
 
-    useEffect(() => {
-      const handleResize = () => setScreenSize(window.innerWidth)
+  useEffect(() => {
+    const handleResize = () => setScreenSize(window.innerWidth);
 
-      window.addEventListener('resize', handleResize)
+    window.addEventListener("resize", handleResize);
 
-      handleResize()
+    handleResize();
 
-      return () => window.removeEventListener('resize', handleResize)
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-    }, [])
-
-    useEffect(() => {
-      if (screenSize <= 900){
-        setActiveMenu(false)
-      } else {
-        setActiveMenu(true)
-      }
-    }, [screenSize])
-
-    
+  useEffect(() => {
+    if (screenSize <= 900) {
+      setActiveMenu(false);
+    } else {
+      setActiveMenu(true);
+    }
+  }, [screenSize]);
 
   return (
     <div className="flex justify-between p-2 md:mx-6 relative">
@@ -98,7 +102,7 @@ const Navbar = () => {
             <MdKeyboardArrowDown className="text-gray-400 text-14" />
           </div>
         </TooltipComponent>
-        
+
         {isClicked.cart && <Cart />}
         {isClicked.chat && <Chat />}
         {isClicked.notification && <Notification />}
